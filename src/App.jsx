@@ -7,7 +7,7 @@ export default function App() {
     <div className="h-[100vh]">
       <Header />
       <main>
-        <div className="container grid lg:grid-cols-[218px_1fr] gap-[3.8rem]">
+        <div className="container grid lg:grid-cols-[218px_1fr] gap-[3.8rem] mt-[10px]">
           <SideBar/>
           <MovieList/>
         </div>
