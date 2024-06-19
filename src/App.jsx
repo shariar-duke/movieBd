@@ -2,8 +2,8 @@ import Header from "./components/Header";
 
 export default function App() {
   return (
-    <h1 className="text-3xl font-bold underline">
+    <div className="h-[100vh]">
       <Header />
-    </h1>
+    </div>
   );
 }
