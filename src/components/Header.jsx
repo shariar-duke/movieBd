@@ -6,7 +6,7 @@ import Cart from "../assets/shopping-cart.svg";
 
 export default function Header() {
   return (
-    <header className="py-5 border border-white">
+    <header className="py-5 ">
       <nav className="container  flex justify-between">
         <a href="#">
           <img src={Logo} alt="Logo" width="139" height="26" />
