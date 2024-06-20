@@ -3,24 +3,30 @@ import MovieRating from "./MovieRating";
 import { getImgUrl } from "../../utils/cine-utility";
 import { useState } from "react";
 import MovieDetailsModal from "./MovieDetailsModal";
-import { useContext } from "react"; 
-import { MovieContext } from "../../context"; 
+import { useContext } from "react";
+import { MovieContext } from "../../context";
+import { useReducer } from "react";
+import { initialState, cartReducer } from "../../reducers/CartReducer";
 export default function MovieCard({ movie }) {
   const imgUrl = getImgUrl(movie?.cover);
   const [showModal, setShowModal] = useState(false);
-  const { cartData, setCartData } = useContext(MovieContext);
-
-  console.log("The cartData is", cartData)
+  const {state, dispatch} =useContext(MovieContext);
 
   const handleAddToCart = (e, movie) => {
     e.stopPropagation();
-
-    let found = cartData?.find((item) => {
+    // eta ekhn sudhu cartData na hoye state.cartData hbe 
+    let found = state.cartData?.find((item) => {
       return item.id === movie.id;
     });
-
+    // r ekhn state a set na kore reducer dia set kore dite hbe 
     if (!found) {
-      setCartData([...cartData, movie]);
+      dispatch({
+        type:"ADD_TO_CART",
+        payload:{
+          ...movie
+        }
+      })
+   
     } else {
       console.error(
         `The movie ${movie.title} has been added to the cart already`
@@ -31,7 +37,11 @@ export default function MovieCard({ movie }) {
   return (
     <>
       {showModal && (
-        <MovieDetailsModal movie={movie} setShowModal={setShowModal} onCartAdd ={handleAddToCart} />
+        <MovieDetailsModal
+          movie={movie}
+          setShowModal={setShowModal}
+          onCartAdd={handleAddToCart}
+        />
       )}
       <figure
         onClick={() => setShowModal(true)}
@@ -47,9 +57,7 @@ export default function MovieCard({ movie }) {
           </div>
 
           <figcaption className="pt-4">
-            <h3 className="text-xl mb-1  font-bold ">
-              {movie.title}
-            </h3>
+            <h3 className="text-xl mb-1  font-bold ">{movie.title}</h3>
             <p className="text-[#575A6E] text-sm mb-2">{movie.genre}</p>
             <MovieRating rating={movie.rating} />
             <a

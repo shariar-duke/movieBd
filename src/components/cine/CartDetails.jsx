@@ -6,7 +6,7 @@ import { MovieContext } from "../../context";
 import del from "../../assets/delete.svg";
 
 export default function CartDetails({ setShowCart }) {
-  const { cartData, setCartData } = useContext(MovieContext);
+  const { state, dispatch } = useContext(MovieContext);
 
   const handleDeleteMovie = (e, id) => {
     e.stopPropagation();
