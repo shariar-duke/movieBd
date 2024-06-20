@@ -9,7 +9,11 @@ import { MovieContext , ThemeContext  } from "../context";
 
 export default function Header() {
   const [showCart, setShowCart] = useState(false);
-  const {cartData} = useContext(MovieContext);
+  const {state} = useContext(MovieContext); // I have made changes here before it was cartData
+  // state ta holo oi initialState ={
+    // cartData:[]
+    // so state.cartData korte
+  
   const {darkMode, setDarkMode} = useContext(ThemeContext)
  
   return (
@@ -35,8 +39,8 @@ export default function Header() {
             >
               <img height={24} width={24} src={Cart} alt="Cart" />
               {
-                cartData.length > 0 && 
-                <span className="rounded-full absolute top-[-12px] left-[28px] bg-[#12CF6F] text-white text-center p-[2px] w-[30px] h-[30px]">{cartData.length}</span>
+                state.cartData.length > 0 && 
+                <span className="rounded-full absolute top-[-12px] left-[28px] bg-[#12CF6F] text-white text-center p-[2px] w-[30px] h-[30px]">{state.cartData.length}</span>
               }
             </li>
           </ul>
