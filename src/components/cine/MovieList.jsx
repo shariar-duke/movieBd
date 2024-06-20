@@ -10,6 +10,7 @@ export default function MovieList() {
           <MovieCard movie={movie} key={index} />
         ))}
       </div>
+      
     </div>
   );
 }
