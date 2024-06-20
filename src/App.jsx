@@ -5,14 +5,14 @@ import { useState , useReducer } from "react";
 import { cartReducer, initialState } from "./reducers/CartReducer"; // eta cartReducer theke anlam 
 import { MovieContext, ThemeContext } from "./context"; 
 export default function App() {
-  const [cartData, setCartData] = useState([]);
+
   const [darkMode, setDarkMode] = useState(true) ;
-  // ekta reudcer k initilize korte hoy ekte reducer function dia jeta holo cartReducer r ekta initial state dia seta holo initialState 
-  // tar bodole pawa jay  etar currect state and dispatch
+
   const [state, dispatch] = useReducer(cartReducer, initialState)
   return (
     <>
-      <MovieContext.Provider value={{ cartData, setCartData }}>
+      {/* cartData and setCartDate er bodol a amra pathabo ekhn state and dispatch  */}
+      <MovieContext.Provider value={{ state, dispatch }}> 
         <ThemeContext.Provider value={{darkMode, setDarkMode}}>
           <div className={`h-full w-full ${darkMode ? "dark" :""} pb-[80px]`}>
             <Header />
