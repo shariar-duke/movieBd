@@ -1,25 +1,9 @@
 import React from "react";
 import { getImgUrl } from "../../utils/cine-utility";
-import { useContext } from "react"; // useContext hook ta nia aslm
-import { MovieContext } from "../../context"; // And MovieContext ta nia aslm
-export default function MovieDetailsModal({ movie, setShowModal }) {
+
+export default function MovieDetailsModal({ movie, setShowModal , onCartAdd }) {
   const imgUrl = getImgUrl(movie?.cover);
-  // function to add movie on the cart
-  const { cartData, setCartData } = useContext(MovieContext);
-
-  const onCartAdd = (e, movie) => {
-    e.stopPropagation();
-    const found = cartData.find((item) => {
-      item.id === movie.id;
-    });
-
-    if (!found) {
-      setCartData(...cartData, movie);
-    } else {
-      console.error(`Movie ${movie.title} is already added`);
-    }
-  };
-
+ 
   return (
     <div className="bg-black bg-opacity-30 z-10  fixed inset-0 flex items-center justify-center  text-white">
       <div className="grid lg:grid-cols-[3fr_1.5fr] max-w-[700px]  bg-[#12141D] rounded-lg">
