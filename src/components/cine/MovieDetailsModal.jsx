@@ -14,7 +14,14 @@ export default function MovieDetailsModal({ movie, setShowModal , onCartAdd }) {
 
           <div className="flex justify-between mt-10 gap-4">
             <button
-              onClick={(e) => onCartAdd(e, movie)}
+              onClick={(e) => 
+                {
+                  onCartAdd(e, movie),
+                  setShowModal(false)
+                }
+         
+              
+              }
               className="bg-primary rounded-lg py-2 px-5 flex items-center justify-center gap-2 text-[#171923] w-full"
             >
               ${movie.price} | Add to Cart
