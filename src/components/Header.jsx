@@ -2,11 +2,14 @@ import Moon from "../assets/icons/moon.svg";
 import Logo from "../assets/logo.svg";
 import Ring from "../assets/icons/ring.svg";
 import Cart from "../assets/shopping-cart.svg";
-import { useState } from "react";
+import { useState , useContext } from "react";
 import CartDetails from "./cine/CartDetails";
+import { MovieContext } from "../context";
 
 export default function Header() {
   const [showCart, setShowCart] = useState(false);
+  const {cartData} = useContext(MovieContext);
+  console.log("All the carData", cartData)
   return (
     <>
       {showCart && <CartDetails setShowCart ={setShowCart} />}
@@ -27,6 +30,10 @@ export default function Header() {
               className="bg-primary/20 dark:bg-primary/[7%] rounded-lg backdrop-blur-[2px] p-1  flex justify-center items-center cursor-pointer"
             >
               <img height={24} width={24} src={Cart} alt="Cart" />
+              {
+                cartData.length > 0 && 
+                <span className="rounded-full absolute top-[-12px] left-[28px] bg-[#12CF6F] text-white text-center p-[2px] w-[30px] h-[30px]">{cartData.length}</span>
+              }
             </li>
           </ul>
         </nav>
