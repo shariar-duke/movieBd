@@ -4,25 +4,30 @@ import { getImgUrl } from "../../utils/cine-utility";
 import { useContext } from "react";
 import { MovieContext } from "../../context";
 import del from "../../assets/delete.svg";
-
+import { toast } from "react-toastify";
 export default function CartDetails({ setShowCart }) {
+  // ekhn ei duta Context theke asbe
   const { state, dispatch } = useContext(MovieContext);
 
-  const handleDeleteMovie = (e, id) => {
-    e.stopPropagation();
-    const newMovieList = cartData.filter((movie) => {
-      return movie.id !== id;
-    });
+  // ei function tay dispatch korano hbe
+  const handleDeleteMovie = (event, item) => {
+    event.preventDefault();
 
-    setCartData(newMovieList);
+    dispatch({
+      type: "REMOVE_FROM_CART",
+      payload: item,
+    });
+    toast.success(`Removed ${item.title} from Cart !`, {
+      position: toast.POSITION.BOTTOM_RIGHT,
+    });
   };
   return (
     <div className="bg-black/60   z-10  fixed inset-0 flex items-center justify-center  text-white">
       <div className="w-[600px] max-h-[400px] overflow-y-auto  bg-[#12141D] rounded-lg p-[40px] flex flex-col gap-[10px]">
         <h2 className="text-[40px] font-extrabold">Your Carts</h2>
-
-        {cartData?.length > 0 ? (
-          cartData?.map((cart, index) => (
+        {/* sob carData gula state.cartData hbe  */}
+        {state.cartData?.length > 0 ? (
+          state.cartData?.map((cart, index) => (
             <div key={index} className="flex justify-between">
               <div className="flex gap-[16px]">
                 {" "}
@@ -40,7 +45,8 @@ export default function CartDetails({ setShowCart }) {
               </div>
               <div className="flex justify-center items-center">
                 <button
-                  onClick={(e) => handleDeleteMovie(e, cart.id)}
+                  // ekhne pura ekta object a dite hbe karon payload a pura object tai deserver kore...
+                  onClick={(e) => handleDeleteMovie(e, cart)}
                   className="p-[8px] flex gap-[6px] text-sm font-semibold bg-[#D42967] rounded-md justify-center w-[100px]"
                 >
                   <img
