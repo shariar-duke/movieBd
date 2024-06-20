@@ -6,7 +6,7 @@ import WatchLater from "../assets/icons/watchLater.svg";
 
 export default function SideBar() {
   return (
-    <aside className="text-white">
+    <aside className="text-black">
       <ul className="space-y-2">
         <a
           href="#"

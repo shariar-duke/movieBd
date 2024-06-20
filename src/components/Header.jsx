@@ -1,15 +1,17 @@
 import Moon from "../assets/icons/moon.svg";
+import Sun from "../assets/icons/sun.svg"
 import Logo from "../assets/logo.svg";
 import Ring from "../assets/icons/ring.svg";
 import Cart from "../assets/shopping-cart.svg";
 import { useState , useContext } from "react";
 import CartDetails from "./cine/CartDetails";
-import { MovieContext } from "../context";
+import { MovieContext , ThemeContext  } from "../context";
 
 export default function Header() {
   const [showCart, setShowCart] = useState(false);
   const {cartData} = useContext(MovieContext);
-  console.log("All the carData", cartData)
+  const {darkMode, setDarkMode} = useContext(ThemeContext)
+ 
   return (
     <>
       {showCart && <CartDetails setShowCart ={setShowCart} />}
@@ -22,8 +24,10 @@ export default function Header() {
             <li className="bg-primary/20 dark:bg-primary/[7%] rounded-lg backdrop-blur-[2px] p-1  flex justify-center items-center cursor-pointer">
               <img height={30} width={30} src={Ring} alt="Ring" />
             </li>
-            <li className="bg-primary/20 dark:bg-primary/[7%] rounded-lg backdrop-blur-[2px] p-1  flex justify-center items-center cursor-pointer">
-              <img height={24} width={24} src={Moon} alt="Moon" />
+            <li
+            onClick={()=> setDarkMode(darkMode => !darkMode)}
+            className="bg-primary/20 dark:bg-primary/[7%] rounded-lg backdrop-blur-[2px] p-1  flex justify-center items-center cursor-pointer">
+              <img height={24} width={24} src={darkMode ? Sun :Moon} alt="Moon" />
             </li>
             <li
               onClick={() => setShowCart(true)}

@@ -10,8 +10,8 @@ export default function App() {
   return (
     <>
       <MovieContext.Provider value={{ cartData, setCartData }}>
-        <ThemeContext.Provider value={{darkMode, setCartData}}>
-          <div className="h-full pb-[80px]">
+        <ThemeContext.Provider value={{darkMode, setDarkMode}}>
+          <div className={`h-full w-full ${darkMode ? "dark" :""} pb-[80px]`}>
             <Header />
             <main>
               <div className="container grid lg:grid-cols-[218px_1fr] gap-[3.8rem] mt-[10px]">

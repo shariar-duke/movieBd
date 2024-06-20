@@ -47,7 +47,7 @@ export default function MovieCard({ movie }) {
           </div>
 
           <figcaption className="pt-4">
-            <h3 className="text-xl mb-1 text-white font-bold ">
+            <h3 className="text-xl mb-1  font-bold ">
               {movie.title}
             </h3>
             <p className="text-[#575A6E] text-sm mb-2">{movie.genre}</p>
